@@ -1,11 +1,40 @@
 package com.example.chat;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.easemob.chat.EMConversation;
+import com.easemob.chat.EMGroupManager;
+import com.easemob.exceptions.EaseMobException;
 
 /**
- * ¶àÈËÁÄÌìÀà
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author lixiaosong
  */
 public class MultiChat {
+	public Map<String, EMConversation> conversations;
 
+	public MultiChat() {
+		conversations = new HashMap<String, EMConversation>();
+	}
+
+	/**
+	 * åˆ›å»ºä¸€ä¸ªç¾¤ç»„
+	 * 
+	 * @param name
+	 *            ç¾¤ç»„å
+	 * @param des
+	 *            ç¾¤ç»„æè¿°
+	 * @param initMems
+	 *            æˆå‘˜
+	 */
+	public void createGroup(String name, String des, String[] initMems) {
+		try {
+			EMGroupManager.getInstance().createPublicGroup(name, des, initMems,
+					false, -1);
+		} catch (EaseMobException e) {
+			e.printStackTrace();
+		}
+	}
 }
